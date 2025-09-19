@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #f1f5f9;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    section {
+      padding: 100px 8% 60px;
+    }
+
+    h2.section-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 50px;
+      color: #38bdf8;
+      position: relative;
+    }
+
+    h2.section-title::after {
+      content: "";
+      width: 80px;
+      height: 3px;
+      background: #38bdf8;
+      display: block;
+      margin: 10px auto 0;
+      border-radius: 3px;
+    }
+
+    /* Header */
+    header {
+      width: 100%;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(10px);
+    }
+
+    header h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #e2e8f0;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #38bdf8;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 8% 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 50px;
+    }
+
+    .hero-text {
+      flex: 1 1 500px;
+      animation: fadeInLeft 1s ease-in-out;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    .hero-text h1 span {
+      color: #38bdf8;
+    }
+
+    .hero-text h2 {
+      font-size: 1.8rem;
+      margin-top: 10px;
+      color: #94a3b8;
+    }
+
+    .hero-text p {
+      margin: 20px 0;
+      line-height: 1.6;
+      max-width: 500px;
+    }
+
+    .hero-text .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: 600;
+      border-radius: 30px;
+      text-decoration: none;
+      margin-top: 20px;
+      transition: 0.3s;
+      box-shadow: 0 0 20px #38bdf8;
+    }
+
+    .hero-text .btn:hover {
+      background: #0f172a;
+      color: #38bdf8;
+      box-shadow: 0 0 40px #38bdf8;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-icons a {
+      font-size: 1.5rem;
+      color: #38bdf8;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.2);
+      color: #0ea5e9;
+    }
+
+    .hero-img {
+      flex: 1 1 400px;
+      display: flex;
+      justify-content: center;
+      animation: fadeInRight 1s ease-in-out;
+    }
+
+    .hero-img img {
+      width: 300px;
+      border-radius: 20px;
+      background: #38bdf8;
+      padding: 10px;
+      box-shadow: 0 0 50px #38bdf8;
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    /* About */
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .about img {
+      width: 280px;
+      border-radius: 15px;
+      box-shadow: 0 0 40px #38bdf8;
+    }
+
+    .about-text {
+      flex: 1 1 500px;
+    }
+
+    .about-text p {
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* Skills */
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .skill {
+      background: #1e293b;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+    }
+
+    .skill i {
+      font-size: 2rem;
+      color: #38bdf8;
+      margin-bottom: 15px;
+    }
+
+    .skill:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+    }
+
+    /* Projects */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .project {
+      background: #1e293b;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+      transition: 0.3s;
+    }
+
+    .project img {
+      width: 100%;
+      display: block;
+      transition: 0.5s;
+    }
+
+    .project:hover img {
+      transform: scale(1.1);
+    }
+
+    .project-info {
+      padding: 20px;
+    }
+
+    .project-info h3 {
+      margin-bottom: 10px;
+      color: #38bdf8;
+    }
+
+    /* Contact */
+    .contact {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .contact form {
+      max-width: 600px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact input,
+    .contact textarea {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      outline: none;
+      border-radius: 8px;
+      background: #1e293b;
+      color: #f1f5f9;
+    }
+
+    .contact button {
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contact button:hover {
+      background: #0f172a;
+      color: #38bdf8;
+      box-shadow: 0 0 20px #38bdf8;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1e293b;
+      margin-top: 50px;
+      color: #94a3b8;
+    }
+
+    /* Animations */
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes floating {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-img img {
+        width: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h2>Portfolio</h2>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h1>Hello, I'm <span>Muhammad Huzaifa</span></h1>
+      <h2>Frontend Developer</h2>
+      <p>I’m a passionate software developer with a love for building modern, responsive websites and applications. 
+      With years of experience in full-stack development, I specialize in creating beautiful, functional, and 
+      user-friendly digital experiences.</p>
+      
+      <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61558516381379"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/huzaifahaf2/"><i class="fab fa-instagram"></i></a>
+      </div>
+      
+      <a href="#" class="btn">Download CV</a>
+    </div>
+
+    <div class="hero-img">
+      <img src="huzaifapic1.jpg" alt="Profile Picture">
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about">
+      <img src="huzaifapic2.jpg" alt="About Image">
+      <div class="about-text">
+        <p>Hello! I'm Muhammad Huzaifa, a passionate Frontend Developer with experience in creating stunning, user-friendly websites. I enjoy turning complex problems into simple, elegant solutions with code.</p>
+        <p>My goal is to bring ideas to life on the web while ensuring great performance and design consistency.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills">
+      <div class="skill"><i class="fab fa-html5"></i><h3>HTML</h3></div>
+      <div class="skill"><i class="fab fa-css3-alt"></i><h3>CSS</h3></div>
+      <div class="skill"><i class="fab fa-js-square"></i><h3>JavaScript</h3></div>
+      </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects">
+      <div class="project">
+        <img src="download (1).jpg" alt="Project 1">
+        <div class="project-info">
+          <h3>Project One</h3>
+          <p>A modern responsive web app designed to showcase frontend skills.</p>
+        </div>
+      </div>
+      <div class="project">
+        <img src="download.jpg" alt="Project 2">
+        <div class="project-info">
+          <h3>Project Two</h3>
+          <p>Creative landing page with animations and responsive layout.</p>
+        </div>
+      </div>
+      <div class="project">
+        <img src="Sticky Horizontal Scrolling Container Webflow cloneable.jpg" alt="Project 3">
+        <div class="project-info">
+          <h3>Project Three</h3>
+          <p>Portfolio website built with modern design principles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <div class="contact">
+        <form action="https://formspree.io/f/xwpngqbv" method="POST">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="6" placeholder="Your Message" required></textarea>
+
+         <!-- Optional: Hidden subject field -->
+      <input type="hidden" name="_subject" value="New Contact Form Message!">
+      
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Muhammad Huzaifa. All rights reserved.</p>
+  </footer>
+</body>
+</html>
